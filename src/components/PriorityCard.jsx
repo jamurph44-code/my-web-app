@@ -5,12 +5,14 @@ function PriorityCard({ priority, onToggle, onUpdate, onDelete }) {
   const [editTitle, setEditTitle] = useState(priority.title);
   const [editDate, setEditDate] = useState(priority.targetDate);
   const [editOwner, setEditOwner] = useState(priority.owner);
+  const [editEffort, setEditEffort] = useState(priority.effort);
 
   const handleSave = () => {
     onUpdate(priority.id, {
       title: editTitle,
       targetDate: editDate,
       owner: editOwner,
+      effort: editEffort,
     });
     setIsEditing(false);
   };
@@ -19,6 +21,7 @@ function PriorityCard({ priority, onToggle, onUpdate, onDelete }) {
     setEditTitle(priority.title);
     setEditDate(priority.targetDate);
     setEditOwner(priority.owner);
+    setEditEffort(priority.effort);
     setIsEditing(false);
   };
 
@@ -73,6 +76,17 @@ function PriorityCard({ priority, onToggle, onUpdate, onDelete }) {
                   placeholder="Owner name"
                 />
               </label>
+              <label>
+                Effort (1-10)
+                <input
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={editEffort}
+                  onChange={(e) => setEditEffort(Number(e.target.value))}
+                  className="edit-input"
+                />
+              </label>
             </div>
             <div className="edit-actions">
               <button className="btn btn-save" onClick={handleSave}>
@@ -91,6 +105,7 @@ function PriorityCard({ priority, onToggle, onUpdate, onDelete }) {
                 Target: {formatDate(priority.targetDate)}
               </span>
               <span className="priority-owner">Owner: {priority.owner}</span>
+              <span className="priority-effort">Effort: {priority.effort}/10</span>
             </div>
           </>
         )}

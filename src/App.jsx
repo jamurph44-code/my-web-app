@@ -26,10 +26,10 @@ function App() {
     setPriorities((prev) => prev.filter((p) => p.id !== id));
   };
 
-  const handleAdd = ({ title, targetDate, owner }) => {
+  const handleAdd = ({ title, targetDate, owner, effort }) => {
     setPriorities((prev) => [
       ...prev,
-      { id: nextId, title, completed: false, targetDate, owner },
+      { id: nextId, title, completed: false, targetDate, owner, effort },
     ]);
     setNextId((n) => n + 1);
     setShowAddForm(false);

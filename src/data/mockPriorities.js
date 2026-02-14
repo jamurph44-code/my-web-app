@@ -5,6 +5,7 @@ const mockPriorities = [
     completed: false,
     targetDate: "2026-03-15",
     owner: "Alice",
+    effort: 4,
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const mockPriorities = [
     completed: false,
     targetDate: "2026-04-01",
     owner: "Bob",
+    effort: 4,
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const mockPriorities = [
     completed: true,
     targetDate: "2026-02-10",
     owner: "Carol",
+    effort: 8,
   },
 ];
 

@@ -1,7 +1,9 @@
 function SummaryPanels({ priorities }) {
-  const total = priorities.length;
-  const completedCount = priorities.filter((p) => p.completed).length;
-  const percentComplete = total > 0 ? Math.round((completedCount / total) * 100) : 0;
+  const totalEffort = priorities.reduce((sum, p) => sum + (p.effort || 0), 0);
+  const completedEffort = priorities
+    .filter((p) => p.completed)
+    .reduce((sum, p) => sum + (p.effort || 0), 0);
+  const percentComplete = totalEffort > 0 ? Math.round((completedEffort / totalEffort) * 100) : 0;
 
   const needsAttention = priorities.filter(
     (p) => !p.targetDate || !p.owner.trim()
