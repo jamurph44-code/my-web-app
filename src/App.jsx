@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PriorityCard from "./components/PriorityCard";
 import AddPriorityForm from "./components/AddPriorityForm";
+import SummaryPanels from "./components/SummaryPanels";
 import mockPriorities from "./data/mockPriorities";
 import "./App.css";
 
@@ -34,19 +35,15 @@ function App() {
     setShowAddForm(false);
   };
 
-  const completedCount = priorities.filter((p) => p.completed).length;
-
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Project Priorities</h1>
-        <p className="dashboard-summary">
-          {completedCount} of {priorities.length} completed
-        </p>
+        <SummaryPanels priorities={priorities} />
       </header>
 
       <main className="priority-list">
-        {priorities.map((priority) => (
+        {[...priorities].sort((a, b) => a.completed - b.completed).map((priority) => (
           <PriorityCard
             key={priority.id}
             priority={priority}
